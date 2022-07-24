@@ -4,4 +4,4 @@ fastapi-jwt-auth
 uuid
 boto3
 boto3-type-annotations
-"passlib[bcrypt]"
+passlib[bcrypt]
