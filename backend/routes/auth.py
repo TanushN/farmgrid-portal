@@ -105,12 +105,12 @@ def protected(Authorize: AuthJWT = Depends()):
     return {"user": current_user}
 
 
-@router.get("/getUsers")
-def get_users():
-    users = UserDB().get_table("users")
-    response = users.scan(FilterExpression=Attr('email').eq('test@email.com'))
-    data = response['Items']
-
-    print(data)
-
-    return {"hello": "world"}
+# @router.get("/getUsers")
+# def get_users():
+#     users = UserDB().get_table("users")
+#     response = users.scan(FilterExpression=Attr('email').eq('test@email.com'))
+#     data = response['Items']
+#
+#     print(data)
+#
+#     return {"hello": "world"}
