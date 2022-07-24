@@ -9,6 +9,7 @@ import boto3
 
 origins = [
     "http://localhost:3000",
+    "https://farmgrid-portal.vercel.app",
 ]
 
 app = FastAPI()
