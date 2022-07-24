@@ -6,5 +6,5 @@ export default defineConfig({
   // ... your config ...
   plugins: [svelte() /* ... your plugins ... */],
   // Add this line:
-  optimizeDeps: { include: ["@carbon/charts"], exclude: ["svelte-navigator"] },
+  optimizeDeps: { include: ["@carbon/charts"], exclude: [] },
 });
