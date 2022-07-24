@@ -4,11 +4,8 @@ from fastapi import HTTPException, Depends, APIRouter
 from fastapi_jwt_auth import AuthJWT
 from pydantic import BaseModel
 from passlib.context import CryptContext
-import sys
 
-sys.path.insert(0, "../")
-
-from backend.modules.users_db import UserDB
+from .modules.users_db import UserDB
 
 router = APIRouter(
     prefix="/auth",
