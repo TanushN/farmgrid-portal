@@ -1,6 +1,5 @@
 from fastapi import HTTPException, Depends, APIRouter
 from fastapi_jwt_auth import AuthJWT
-import sys
 
 from .modules.sensor_events_db import SensorEventsDB
 

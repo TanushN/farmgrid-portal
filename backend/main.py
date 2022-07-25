@@ -27,7 +27,6 @@ app.include_router(sensor_events.router)
 
 boto3.setup_default_session(region_name=os.getenv("REGION_NAME"))
 
-
 @app.get("/hello")
 def hi():
     return {"hello": "world"}

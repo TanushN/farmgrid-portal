@@ -48,7 +48,7 @@
           data={[
             {
               group: "value",
-              value: latest.battery,
+              value: (latest.battery / 3.3) * 100,
             },
           ]}
           options={{
