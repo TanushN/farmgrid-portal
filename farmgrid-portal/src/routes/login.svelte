@@ -1,5 +1,5 @@
 <script>
-  import { user, access_token, refresh_token } from "../stores";
+  import { user } from "../stores";
   import { navigate } from "svelte-navigator";
   import {
     TextInput,
@@ -15,7 +15,7 @@
       const response = await Api.post("/auth/login", {
         email: email,
         password: password,
-      }, false);
+      });
 
       localStorage.setItem("user", response.email);
 
@@ -33,7 +33,7 @@
   let password;
 
   let showErrorToast = false;
-  let toastError = "yea";
+  let toastError = "";
 </script>
 
 <main>
@@ -72,9 +72,10 @@
     position: absolute;
     row-gap: 1rem;
     flex-direction: column;
-    width: 27rem;
+    width: 20%;
     justify-content: flex-start;
     top: 40%;
     left: 40%;
+    right: 40%;
   }
 </style>

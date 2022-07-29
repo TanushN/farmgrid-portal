@@ -46,6 +46,8 @@ def signup(user: NewUser):
     if user.email == "" and user.password == "":
         raise HTTPException(status_code=400, detail="fields cannot be empty")
 
+    user.email = user.email.lower()
+
     user_db = UserDB()
     if user_db.email_exists(user.email):
         raise HTTPException(status_code=409, detail="Email already exists")
@@ -60,6 +62,8 @@ def login(user: NewUser, Authorize: AuthJWT = Depends()):
     if user.email == "" and user.password == "":
         raise HTTPException(status_code=400, detail="fields cannot be empty")
 
+    user.email = user.email.lower()
+    
     user_record = UserDB().get_user(user.email)
 
     if not user_record:

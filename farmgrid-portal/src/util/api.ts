@@ -1,8 +1,7 @@
 // Api.js
 import axios from "axios";
 import { API_URL } from "./api_config";
-
-import { access_token, refresh_token } from "../stores";
+import { user } from "../stores";
 
 axios.defaults.withCredentials = true
 
@@ -12,7 +11,7 @@ const axiosAPI = axios.create({
 });
 
 // implement a method to execute all the request from here.
-const apiRequest = (method, url, request, useAuth = true, times_called = 0) => {
+const apiRequest = (method, url, request, times_tried = 0) => {
     const headers = {};
     //using the axios instance to perform the request that received from each http method
     return axiosAPI({
@@ -24,12 +23,16 @@ const apiRequest = (method, url, request, useAuth = true, times_called = 0) => {
           'Content-Type': 'application/json'
         }
       }).then(res => {
-        if(!useAuth) {
-          axiosAPI.defaults.headers['x-csrf-token'] = res.data.csrf_token;
-        }
         return Promise.resolve(res.data);
       })
       .catch(err => {
+        // if(times_tried >= 0){
+        //   return Promise.reject(err);
+        // }
+        if(err.response.status == 401 || err.response.status == 422){
+          localStorage.removeItem("user");
+          user.set(null);
+        }
         return Promise.reject(err);
       });
 };
@@ -41,7 +44,7 @@ const get = async (url: string, request) => apiRequest("get", url, request);
 const deleteRequest = (url, request) =>  apiRequest("delete", url, request);
 
 // function to execute the http post request
-const post = (url, request, useAuth = true) => apiRequest("post", url, request, useAuth);
+const post = (url, request) => apiRequest("post", url, request);
 
 // function to execute the http put request
 const put = (url, request) => apiRequest("put", url, request);

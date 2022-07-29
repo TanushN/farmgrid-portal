@@ -15,7 +15,7 @@
       const response = await Api.post("/auth/signup", {
         email: email,
         password: password,
-      }, false);
+      });
 
       console.log("Signed up!");
 
@@ -79,7 +79,9 @@
     flex-direction: column;
     width: 27rem;
     justify-content: flex-start;
+    width: 20%;
     top: 40%;
     left: 40%;
+    right: 40%;
   }
 </style>

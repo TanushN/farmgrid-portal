@@ -25,7 +25,7 @@ app.add_middleware(
 app.include_router(auth.router)
 app.include_router(sensor_events.router)
 
-boto3.setup_default_session(region_name=os.getenv("REGION_NAME"))
+boto3.setup_default_session(region_name=os.getenv("REGION_NAME"), aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID_A"), aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY_A"))
 
 @app.get("/hello")
 def hi():
